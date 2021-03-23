@@ -1,0 +1,88 @@
+body {
+  margin: 0px;
+  background-color: #156862;
+}
+
+#clock_wrapper {
+  position: fixed;
+  left: 200px;
+  top: 100px;
+}
+
+.number {
+  color: #fff;
+  font-size: 3em;
+  font-weight: bold;
+}
+
+#one {
+  position: fixed;
+  left: 470px;
+  top: 110px;
+}
+
+#two {
+  position: fixed;
+  left: 540px;
+  top: 170px;
+}
+
+#three {
+  position: fixed;
+  left: 570px;
+  top: 265px;
+}
+
+#four {
+  position: fixed;
+  left: 540px;
+  top: 360px;
+}
+
+#five {
+  position: fixed;
+  left: 475px;
+  top: 430px;
+}
+
+#six {
+  position: fixed;
+  left: 390px;
+  top: 450px;
+}
+
+#seven {
+  position: fixed;
+  left: 300px;
+  top: 430px;
+}
+
+#eight {
+  position: fixed;
+  left: 230px;
+  top: 360px;
+}
+
+#nine {
+  position: fixed;
+  left: 210px;
+  top: 265px;
+}
+
+#ten {
+  position: fixed;
+  left: 210px;
+  top: 170px;
+}
+
+#eleven {
+  position: fixed;
+  left: 285px;
+  top: 110px;
+}
+
+#twelve {
+  position: fixed;
+  left: 370px;
+  top: 90px;
+}

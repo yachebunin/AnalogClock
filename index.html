@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clock</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div class="number" id="one">1</div>
+    <div class="number" id="two">2</div>
+    <div class="number" id="three">3</div>
+    <div class="number" id="four">4</div>
+    <div class="number" id="five">5</div>
+    <div class="number" id="six">6</div>
+    <div class="number" id="seven">7</div>
+    <div class="number" id="eight">8</div>
+    <div class="number" id="nine">9</div>
+    <div class="number" id="ten">10</div>
+    <div class="number" id="eleven">11</div>
+    <div class="number" id="twelve">12</div>
+    <div id="clock_wrapper">
+      <canvas height="400" width="400" id="clock">Обновите браузер</canvas>
+    </div>
+
+    <script>
+      var clock = document.getElementById("clock");
+      var ctx = clock.getContext("2d");
+
+      var radiusClock = clock.width / 2 - 40;
+      var xCenterClock = clock.width / 2;
+      var yCenterClock = clock.height / 2;
+
+      var lengthSec = radiusClock - 10;
+      var lengthMin = radiusClock - 15;
+      var lengthHour = lengthMin / 1.5;
+
+      var t_sec;
+      var t_min;
+      var t_hour;
+
+      var date;
+
+      ctx.beginPath();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = "#fff";
+
+      function createClock() {
+        // создает часы
+        ctx.moveTo(clock.width / 2 + 150, clock.height / 2);
+        ctx.arc(200, 200, 150, 0, 2 * Math.PI, true);
+      }
+
+      function changeHour(date) {
+        // изменяет часы
+
+        ctx.moveTo(xCenterClock, yCenterClock);
+        ctx.lineTo(
+          xCenterClock +
+            lengthHour * Math.cos(Math.PI / 2 - t_hour * (Math.PI / 180)),
+          yCenterClock -
+            lengthHour * Math.sin(Math.PI / 2 - t_hour * (Math.PI / 180))
+        );
+      }
+      function changeMin(date) {
+        ctx.moveTo(xCenterClock, yCenterClock);
+        ctx.lineTo(
+          xCenterClock +
+            lengthMin * Math.cos(Math.PI / 2 - t_min * (Math.PI / 180)),
+          yCenterClock -
+            lengthMin * Math.sin(Math.PI / 2 - t_min * (Math.PI / 180))
+        );
+      }
+      function changeSec(date) {
+        ctx.moveTo(xCenterClock, yCenterClock);
+        ctx.lineTo(
+          xCenterClock +
+            lengthSec * Math.cos(Math.PI / 2 - t_sec * (Math.PI / 180)),
+          yCenterClock -
+            lengthSec * Math.sin(Math.PI / 2 - t_sec * (Math.PI / 180))
+        );
+      }
+
+      setInterval(function () {
+        ctx.beginPath();
+        // каждую секунду очищает область часов, чтобы нарисовать заново
+
+        createClock();
+
+        date = new Date();
+
+        t_sec = 6 * date.getSeconds(); //Определяем угол для секунд
+        t_min = 6 * (date.getMinutes() + (1 / 60) * date.getSeconds()); //Определяем угол для минут
+        t_hour = 30 * (date.getHours() + (1 / 60) * date.getMinutes()); //Определяем угол для часов
+
+        //Функция очистки Context
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+        changeHour(date);
+        changeMin(date);
+        changeSec(date);
+        ctx.stroke();
+        ctx.closePath();
+      }, 1000);
+    </script>
+  </body>
+</html>
